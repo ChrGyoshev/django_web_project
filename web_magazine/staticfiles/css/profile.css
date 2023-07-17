@@ -1,0 +1,164 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+.profile-card * {
+    font-family: 'Poppins', sans-serif;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.profile-card {
+    position: relative;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 370px;
+    width: 100%;
+    background: #ffffffa3;
+    border-radius: 24px;
+    padding: 25px;
+    box-shadow: 0 5px 10px black;
+}
+
+.image {
+    position: relative;
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    background-color: #4070f4;
+    padding: 3px;
+    margin-bottom: 10px;
+}
+
+.image img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid #fff;
+}
+
+.profile-card .text-data {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.profile-card .text-data .name {
+    font-weight: bold;
+    font-size: 17px;
+    padding-left: 5px;
+}
+
+.fa-user-pen {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    text-decoration: none;
+    color: black;
+    font-size: 22px;
+}
+
+.fa-solid.fa-user-xmark{
+    position: absolute;
+    top: 15px;
+    right: 55px;
+    text-decoration: none;
+    color: #892323;
+    font-size: 22px;
+
+}
+
+.edit-submit-btn {
+    border: none;
+    width: 60%;
+    margin: 0 auto;
+    border-radius: 10px;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    background-color: #ffffff;
+}
+
+.edit-submit-btn:hover {
+    color: white;
+    cursor: pointer;
+    background-color: black;
+
+}
+
+.img-file-text h4 {
+    text-align: center;
+    color: red;
+}
+
+.img-file-text span {
+    color: black;
+    font-weight: 300;
+    font-size: 14px;
+    padding-left: 10px;
+}
+
+/*DELETE PROFILE*/
+
+.delete-wrapper {
+        width: 25vw;
+    background-color: white;
+    text-align: center;
+    margin: auto;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 2px 1px 20px 11px black;
+}
+
+.delete-card {
+    background-color: #FFE7D9;
+    width: 90%;
+    margin: 15px auto;
+    text-align: left;
+    padding:8px;
+    border-left: 2px solid #F47142;
+    border-radius: 2px;
+}
+
+.delete-card h3 {
+    color: #7E1709;
+}
+.delete-card i {
+    padding-right: 5px;
+}
+
+.delete-card p {
+    color:#F47142;
+}
+
+.profile-delete, .profile-cancel {
+    padding:8px 36px;
+    border: none;
+   border-radius: 15px;
+    font-size: 14px;
+}
+
+.profile-delete {
+    background-color: #E12D39;
+    color: white;
+    border: 2px solid #E12D39;
+    margin-right: 10px;
+}
+
+.profile-delete:hover{
+    cursor: pointer;
+    border: 2px solid black;
+}
+
+.profile-cancel {
+    background-color: #627D98;
+    color: white;
+    border: 2px solid #627D98;
+}
+
+.profile-cancel:hover{
+    border: 2px solid black;
+}

@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load ratings %}
+{% block main_content %}
+
+
+
+    <div class="gallery">
+        {% for book in object_list %}
+            <a class="gallery-redirect-to-details" href="#">
+            <div class="content">
+                <img src="{{ book.cover.url }}" alt="">
+                <h3>{{ book.title }}</h3>
+                <p>{{ book.description|truncatechars:20 }}</p>
+                {% ratings book %}
+                <h6>${{ book.price|floatformat:2 }}</h6>
+                <p>{{ book.author }}</p>
+
+                <a href="{% url 'cart add' book.pk   %}">
+                    <button>Add to Cart</button>
+                </a>
+            </div>
+            </a>
+        {% endfor %}
+
+    </div>
+    {% if is_paginated %}
+        <div class="page-count-wrapper">
+
+        <a href="?page=1" class="btn-paginator btn-first"><i class="fa-solid fa-backward"></i></a>
+        {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number }}"
+               class="btn-paginator btn-previous"><i class="fa-solid fa-circle-arrow-left"></i></a>
+        {% endif %}
+
+        {% for num in page_obj.paginator.page_range %}
+            {% if num == page_obj.number %}
+                <span class="btn-paginator current-page">{{ num }}</span>
+            {% else %}
+                <a href="?page={{ num }}" class="btn-paginator btn-secondary">
+                    {{ num }}
+                </a>
+            {% endif %}
+        {% endfor %}
+
+
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}"
+               class="btn-paginator btn-secondary mx-2">
+                <i class="fa-solid fa-circle-arrow-right"></i>
+            </a>
+        {% endif %}
+        <a href="?page={{ page_obj.paginator.num_pages }}"
+           class="btn-paginator btn-secondary mx-2">
+            <i class="fa-solid fa-forward"></i>
+        </a>
+    {% endif %}
+</div>
+
+
+
+
+
+
+{% endblock %}

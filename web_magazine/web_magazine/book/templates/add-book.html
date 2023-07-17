@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block main_content %}
+    <div class="errors">
+        {% if form.errors %}
+            <i class="fa-regular fa-circle-xmark" onclick="hideErrors()"></i>
+            {{ form.non_field_errors }}
+
+        {% endif %}
+    </div>
+
+    <div class="profile-card profile-details book-card">
+        <div class="text-data">
+            <form method="post" enctype="multipart/form-data" action="{% url 'add book' %}">
+
+                <label for="id_title">Title:</label>
+
+                {{ form.title }}
+                <label for="id_description">Description:</label>
+                {{ form.description }}
+
+                     <label for="id_price">Price:</label>
+                  {{ form.price }}
+                <label for="id_author">Author:</label>
+
+
+                {{ form.author }}
+
+
+                <label for="id_author_first_name">Author First Name:</label>
+                {{ form.author_first_name }}
+                <label for="id_author_last_name">Author Last Name:</label>
+                {{ form.author_last_name }}
+
+
+
+                <div class="book-file img-file-text">
+                    <h4></h4>
+
+                </div>
+                  <label>Upload File:</label>
+                {% csrf_token %}
+                <div class="book-edit-btns">
+                     <label class="edit-submit-btn">
+
+                    <input type="file" name="cover" accept="image/*" id="id_cover">
+                    <input type="file" id="geeks" name="myfile">
+                    <i class="fa fa-cloud-upload"></i> Upload
+
+                </label>
+                <button class="edit-submit-btn submit-book-btn">SUBMIT</button>
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block main_content %}
+
+
+     <div class="errors">
+        {% if form.errors %}
+            <i class="fa-regular fa-circle-xmark" onclick="hideErrors()"></i>
+            {{ form.non_field_errors }}
+            {{ form.phone.errors }}
+        {% endif %}
+    </div>
+
+
+    <div class="profile-card profile-details">
+        <div class="image">
+             {% if user.profile.profile_picture %}
+            <img src="{{ user.profile.profile_picture.url }}" alt="">
+            {% else %}
+            <img src="https://img.myloview.com/posters/default-avatar-profile-icon-vector-social-media-user-400-202768327.jpg" alt="">
+            {% endif %}
+
+
+        </div>
+
+        <div class="text-data">
+            <form action="{% url 'edit profile' request.user.pk %}" method="post" enctype="multipart/form-data"
+                  autocomplete="off">
+                <label for="id_first_name">First Name: </label>
+
+                {{ form.first_name }}
+
+                <label for="id_last_name">Last Name:</label>
+                {{ form.last_name }}
+
+                <label for="id_gender">Gender:</label>
+                {{ form.gender }}
+
+                <label for="id_phone">Phone Number:</label>
+                {{ form.phone }}
+                <label>Upload File:</label>
+                <label class="edit-submit-btn">
+
+                    <input type="file" name="profile_picture" accept="image/*" id="id_profile_picture">
+                    <input type="file" id="geeks" name="myfile">
+                    <i class="fa fa-cloud-upload"></i> Upload
+                </label>
+                <div class="img-file-text">
+                    <h4></h4>
+                </div>
+                {% csrf_token %}
+
+                <button class="edit-submit-btn">SUBMIT</button>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

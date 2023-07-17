@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block main_content %}
+    <div class="delete-wrapper">
+     <form action="{% url 'delete profile' request.user.pk %}" method="post">
+    <h2>Are you sure you want to delete your profile?</h2>
+         <section class="delete-card">
+             <h3><i class="fa-solid fa-triangle-exclamation"></i>Warning</h3>
+             <p>By deleting you can't undo this action.</p>
+         </section>
+         <button class="profile-delete" >Delete</button>
+         <a href="{% url 'index' %}" class="profile-cancel">Cancel</a>
+    {% csrf_token %}
+
+    </form>
+    </div>
+
+
+{% endblock %}

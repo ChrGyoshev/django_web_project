@@ -1,0 +1,71 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>BookBuzz</title>
+     <link rel="stylesheet" href="{% static 'star-ratings/css/star-ratings.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="shortcut icon" href="{% static 'George-Ui-Ancient-Legend-Green-Books-Library.256.png' %}">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+</head>
+<body>
+
+<section class="page-wrapper">
+{#NAVIGATION BAR#}
+    <nav>
+        <div class="allMenu ">
+            <ul class="ul">
+                <li class="lia" onclick="location.href='{% url "index" %}'"><a class="li">Home</a></li>
+                <li class="lia" onclick="location.href='{% url "book catalogue" %}'"><a class="li">Catalogue</a></li>
+                <li class="lia"><a href="file:///C:/xampp/CodePen/CodePen8.html" class="li">Portfolio</a></li>
+                <li class="lia" onclick="location.href='{% url "sign in" %}'"><a class="li">Sign In</a></li>
+                {% if user.is_authenticated %}
+
+                    <li class="lia profile"><a class="li">Profile</a>
+                        <a href="{% url 'sign in' %}" class="profile-btns">login</a>
+                        <a href="{% url 'profile details'  user.pk %}" class="profile-btns">Details<i class="fa-regular fa-user"></i></a>
+                        <a href="{% url 'sign out' %}" class="profile-btns">LogOut<i class="fa fa-sign-out" aria-hidden="true"></i></a></li>
+
+                     <li class="lia cart" onclick="location.href='{% url "cart view" %}'"><a class="li"><i class="fa-solid fa-cart-shopping"></i></a></li>
+                {% else %}
+                    <li class="lia profile"><a class="li">Sign</a>
+                    <a href="{% url 'sign up' %}" class="profile-btns">Sign Up<i class="fa-regular fa-user"></i></a>
+                    <a href="{% url 'sign in' %}" class="profile-btns">Sign In<i class="fa-regular fa-user"></i></a>
+                {% endif %}
+            </ul>
+            <div class="Menu2">
+                <svg version="1.1" id="menulogo" xmlns="http://www.w3.org/2000/svg"
+                     xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                     width="40px" height="36px" viewBox="0 0 40 36" enable-background="new 0 0 40 40"
+                     xml:space="preserve">
+<rect class="rect1" fill="#FFF" width="40" height="5.392"></rect>
+                    <rect class="rect2" x="0" y="12" fill="#FFF" width="40" height="5.393"></rect>
+                    <rect class="rect3" x="0" y="24" fill="#FFF" width="40" height="5.393"></rect>
+</svg>
+                <div class="Menu hover">
+                </div>
+            </div>
+        </div>
+    </nav>
+{#END OF NAVIGATION#}
+
+{#MAIN CONTENT#}
+    {% block main_content %}
+    {% endblock %}
+</section>
+<script type="text/javascript" src="{% static 'star-ratings/js/dist/star-ratings.min.js' %}"></script>
+<script src="{% static 'js/script.js' %}"></script>
+<script src="{% static 'js/hideErrors.js' %}"></script>
+<script src="{% static 'js/FileNameEditProfile.js' %}"></script>
+
+
+<footer>
+    <p>&#64 2023 Christiyan Gyoshev - All rights Reserved</p>
+</footer>
+</body>
+</html>

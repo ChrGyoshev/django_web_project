@@ -1,0 +1,59 @@
+
+.cart-title {
+    font-size: 2.5rem;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    font-family: cursive;
+}
+
+
+.lia.cart i {
+    font-size: 18px;
+}
+
+
+.product-picture {
+    width: 80px;
+    height: 90px;
+}
+
+.product-picture img {
+    width: 100%;
+    height: 100%;
+}
+
+table {
+     background-color: #ffffffbd;
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 6px;
+}
+
+th, td {
+    border: none;
+    padding: 8px;
+    text-align: center;
+
+}
+
+th {
+text-align: center;
+}
+
+tr:not(:first-child) {
+    border-bottom: 1px solid rgba(128, 128, 128, 0.4);
+}
+
+hr {
+    position: relative;
+    top: 40px;
+    width: 90%;
+}
+
+.fa-square-xmark {
+    text-decoration: none;
+    color: black;
+    font-size: 22px;
+}
+

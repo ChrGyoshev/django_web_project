@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+{#MAIN CONTENT#}
+{% block main_content %}
+{#HANDLING ERRORS#}
+    {% if form.errors %}
+        <div class="errors sign-up-errors">
+            <i class="fa-regular fa-circle-xmark" onclick="hideErrors()"></i>
+            <ul class="errorlist">
+                {% for field in form %}
+                    {% for error in field.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+{#END OF ERRORS#}
+{#SIGN UP FORM#}
+    <div class="login-box sign-up-box">
+        <h2>Sign Up</h2>
+        <form method="post" action="{% url 'sign up' %}">
+
+            <div class="user-box">
+                <input type="text" name="email" autofocus="" autocapitalize="none" autocomplete="email" maxlength="254"
+                       required="" id="id_username">
+                <label>Email</label>
+            </div>
+            <div class="user-box">
+                {{ form.password1 }}
+
+                <i class="fa-regular fa-eye" onclick="passHide()"></i>
+                <label>Password</label>
+            </div>
+            <div class="user-box">
+                {{ form.password2 }}
+                <i class="fa-regular fa-eye" onclick="passHide()"></i>
+                <label>Password</label>
+            </div>
+
+            {% csrf_token %}
+            <button class="submit">Submit</button>
+        </form>
+    </div>
+{#END OF SIGN UP FORM#}
+    <script src="{% static 'js/hideErrors.js' %}"></script>
+{% endblock %}

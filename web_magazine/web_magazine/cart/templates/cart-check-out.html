@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block main_content %}
+    <h1 class="cart-title">My Shopping Cart</h1>
+
+
+    <section class="cart-wrapper">
+        <table>
+            <thead>
+            <tr>
+                <th></th>
+                <th>Author</th>
+                <th>Quantity</th>
+                <th>Remove</th>
+                <th>Price</th>
+            </tr>
+            <hr>
+            </thead>
+
+            <tbody>
+            {% for book in books %}
+                <tr>
+                    <td class="product-picture"><img src="{{ book.book.cover.url }}" alt="Product 1"></td>
+                    <td>{{ book.book.author }}</td>
+                    <td>{{ book.quantity }}</td>
+                    <td><a href="{% url 'delete item from cart' book.pk %}"><i class="fa-solid fa-square-xmark"></i></a></td>
+                    <td>{{ book.total_price|floatformat:2 }} лв.</td>
+
+                </tr>
+
+            {% endfor %}
+
+            </tbody>
+
+            <tfoot>
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th>Total: {{ total_amount|floatformat:2 }} лв.</th>
+
+
+            </tr>
+            </tfoot>
+        </table>
+    </section>
+
+       <form method="post" action="{% url 'buy now' %}">
+           <input type="text" name="adress" id="adress" required="required">
+        {% csrf_token %}
+        <!-- Add fields for address and phone here -->
+        <input type="submit" value="Buy Now">
+    </form>
+
+{% endblock %}

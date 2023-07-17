@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block main_content %}
+    <div class="image-container">
+    <h1 class="site-slogan">From our site to your book nook, stories that will hook</h1>
+      <div class="image1">
+        <img src="{% static "logo.png" %}" alt="">
+
+    </div>
+
+     </div>
+
+
+
+
+
+{% if user.is_authenticated %}
+    <h1>hello {{ user.email }}</h1>
+    <h2>{{ request.user.email }}</h2>
+    <h1>{{ request.user.profile.first_name}}</h1>
+    {% endif %}
+    
+
+{% endblock %}
+
