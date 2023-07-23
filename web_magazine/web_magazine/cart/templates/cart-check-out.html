@@ -1,6 +1,20 @@
 {% extends 'base.html' %}
 {% block main_content %}
     <h1 class="cart-title">My Shopping Cart</h1>
+        {% if form.phone.errors %}
+        <div class="errors">
+         <i class="fa-regular fa-circle-xmark" onclick="hideErrors()"></i>
+        <ul class="errorlist nonfield">
+            <li>
+                {% for error in form.phone.errors %}
+               {{ error }}
+            </li>
+        </ul>
+
+            {% endfor %}
+        </div>
+    {% endif %}
+
 
 
     <section class="cart-wrapper">
@@ -51,9 +65,11 @@
         {% csrf_token %}
         <!-- Add fields for address and phone here -->
 
-
+        {{ form.phone }}
        <input type="submit" value="Buy Now">
 
     </form>
+
+
 
 {% endblock %}

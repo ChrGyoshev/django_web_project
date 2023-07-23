@@ -4,10 +4,14 @@
   <ul>
        {% for profile in profiles %}
         <h2>User: {{ profile.user.email }}</h2>
+           <h2>{{ profile.phone }}</h2>
+           <ul>
+            <li>{{ profile.orders.last.status }} ---- {{ profile.orders.last.created }}</li>
+           </ul>
         <ul>
             {% for order in profile.orders %}
                 <li>{{ order.book.title }} -> {{ order.quantity }}</li>
-                <li>{{ order.created }} -> {{ order.status }}</li>
+
             {% endfor %}
             <a href="{% url 'finish order' pk=profile.pk %}">Edit</a>
         </ul>
@@ -16,3 +20,4 @@
 
     </ul>
 {% endblock %}
+

@@ -1,11 +1,16 @@
 from django.contrib.auth.base_user import BaseUserManager, AbstractBaseUser
 from django.contrib.auth.models import AbstractUser, PermissionsMixin
+from django.core.exceptions import ValidationError
 from django.core.validators import RegexValidator
 from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+import re
 
 
+def phone_regex_validator(value):
+    if not re.match(r'^\+\d{1,15}$', value):
+        raise ValidationError("Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.")
 # Create your models here.
 class UserManager(BaseUserManager):
     use_in_migrations = True
@@ -61,8 +66,7 @@ class Profile(models.Model):
         ("Female",'Female'),
         ("Do not show", 'Do not show')
     )
-    phone_regex = RegexValidator(regex=r'^\+\d{1,15}$',
-                                 message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.")
+
 
 
     first_name = models.CharField(
@@ -91,7 +95,7 @@ class Profile(models.Model):
     )
 
     phone =models.CharField(
-        validators=[phone_regex],
+        validators=[phone_regex_validator,],
         max_length=17,
         blank=True,
         null=True,

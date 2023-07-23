@@ -17,6 +17,7 @@ class CreateUserForm(UserCreationForm):
         field_classes = {"username": UsernameField}
 
 
+
 class ChangeForm(forms.ModelForm):
 
     class Meta:

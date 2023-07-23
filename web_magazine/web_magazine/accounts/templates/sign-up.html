@@ -1,5 +1,9 @@
 {% extends 'base.html' %}
 {% load static %}
+<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Roboto:400"/>
+{% load socialaccount %}
+
+
 {#MAIN CONTENT#}
 {% block main_content %}
 {#HANDLING ERRORS#}
@@ -37,6 +41,7 @@
                 <i class="fa-regular fa-eye" onclick="passHide()"></i>
                 <label>Password</label>
             </div>
+
 
             {% csrf_token %}
             <button class="submit">Submit</button>

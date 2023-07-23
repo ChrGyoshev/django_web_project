@@ -45,11 +45,13 @@ tr:not(:first-child) {
     border-bottom: 1px solid rgba(128, 128, 128, 0.4);
 }
 
-hr {
+.cart-wrapper hr {
     position: relative;
     top: 40px;
     width: 90%;
+   
 }
+
 
 .fa-square-xmark {
     text-decoration: none;
