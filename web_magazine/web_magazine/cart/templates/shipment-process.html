@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block main_content %}
+
+  <ul>
+       {% for profile in profiles %}
+        <h2>User: {{ profile.user.email }}</h2>
+        <ul>
+            {% for order in profile.orders %}
+                <li>{{ order.book.title }} -> {{ order.quantity }}</li>
+                <li>{{ order.created }} -> {{ order.status }}</li>
+            {% endfor %}
+            <a href="{% url 'finish order' pk=profile.pk %}">Edit</a>
+        </ul>
+    {% endfor %}
+
+
+    </ul>
+{% endblock %}

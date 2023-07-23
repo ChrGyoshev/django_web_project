@@ -70,6 +70,7 @@ RECAPTCHA_PRIVATE_KEY = '6LeQcugmAAAAAMUZypHswfazezLpDhFmd8vwpVdc'
 SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error']
 
 
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',

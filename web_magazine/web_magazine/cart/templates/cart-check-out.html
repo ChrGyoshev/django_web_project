@@ -46,10 +46,14 @@
     </section>
 
        <form method="post" action="{% url 'buy now' %}">
-           <input type="text" name="adress" id="adress" required="required">
+
+
         {% csrf_token %}
         <!-- Add fields for address and phone here -->
-        <input type="submit" value="Buy Now">
+
+
+       <input type="submit" value="Buy Now">
+
     </form>
 
 {% endblock %}
