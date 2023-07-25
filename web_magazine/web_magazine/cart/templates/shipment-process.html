@@ -2,7 +2,9 @@
 {% block main_content %}
 
   <ul>
+
        {% for profile in profiles %}
+            {% if profile.orders %}
         <h2>User: {{ profile.user.email }}</h2>
            <h2>{{ profile.phone }}</h2>
            <ul>
@@ -13,11 +15,15 @@
                 <li>{{ order.book.title }} -> {{ order.quantity }}</li>
 
             {% endfor %}
+        <h1>{{ profile.total_price }}</h1>
+
             <a href="{% url 'finish order' pk=profile.pk %}">Edit</a>
         </ul>
+           {% endif %}
     {% endfor %}
 
 
     </ul>
+
 {% endblock %}
 

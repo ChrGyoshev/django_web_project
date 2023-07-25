@@ -14,11 +14,7 @@
 
 
 
-{% if user.is_authenticated %}
-    <h1>hello {{ user.email }}</h1>
-    <h2>{{ request.user.email }}</h2>
-    <h1>{{ request.user.profile.first_name}}</h1>
-    {% endif %}
+
     
 
 {% endblock %}

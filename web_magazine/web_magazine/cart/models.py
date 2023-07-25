@@ -32,6 +32,10 @@ class Order(models.Model):
         choices= CHOICES, default='Pending',
     )
 
+    price = models.FloatField(
+        default=0,
+    )
+
 
 
 

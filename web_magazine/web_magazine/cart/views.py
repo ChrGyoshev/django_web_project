@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.mixins import UserPassesTestMixin
-from django.db import transaction
+from django.db import transaction, models
 from django.db.models import Sum, F
 from django.http import HttpResponse
 from django.shortcuts import redirect, get_object_or_404, render
@@ -141,6 +141,7 @@ class BuyNow(views.View):
                         book=cart_item.book,
                         quantity=cart_item.quantity,
                         created=created_time,
+                        price = cart_item.book.price,
                     )
                     cart_item.delete()
                 Order.objects.filter(profile=self.request.user.profile).update(status='Pending')
@@ -166,13 +167,23 @@ class ShipmentProcess(UserPassesTestMixin,views.ListView):
     def get(self, request, *args, **kwargs):
         profiles = Profile.objects.all()
 
-
+        for profile in profiles:
+            profile.orders = Order.objects.filter(profile=profile)
+            total_price = profile.orders.aggregate(total_price=Sum(models.F('price') * models.F('quantity')))[
+                'total_price']
+            profile.total_price = total_price if total_price is not None else 0
 
         for profile in profiles:
             profile.orders = Order.objects.filter(profile=profile)
 
+
+
+
+
+
         context = {
             'profiles': profiles,
+
         }
 
         return render(request, self.template_name, context)
