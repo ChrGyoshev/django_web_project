@@ -1,12 +1,17 @@
 {% extends 'base.html' %}
 {% block main_content %}
 
+
+
+
+
   <ul>
 
        {% for profile in profiles %}
             {% if profile.orders %}
         <h2>User: {{ profile.user.email }}</h2>
-           <h2>{{ profile.phone }}</h2>
+           <h2>{{ profile.orders.last.phone }}</h2>
+                <h2>{{ profile.orders.last.address }}</h2>
            <ul>
             <li>{{ profile.orders.last.status }} ---- {{ profile.orders.last.created }}</li>
            </ul>

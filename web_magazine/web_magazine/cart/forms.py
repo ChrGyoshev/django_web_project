@@ -2,8 +2,7 @@ from django import forms
 from django.core.validators import RegexValidator
 
 from web_magazine.accounts.models import Profile
-from web_magazine.cart.models import Order
-
+from web_magazine.cart.models import Order, Cart
 
 
 class OrderCreateForm(forms.ModelForm):
@@ -23,6 +22,5 @@ class PhoneOrderForm(forms.ModelForm):
     phone = forms.CharField(validators=[phone_regex_validator], max_length=17, required=True)
 
     class Meta:
-        model = Profile
-        fields = ['phone']
-        exclude = ['first_name', 'last_name', 'profile_picture', 'gender']  # Exclude model errors
+        model = Order
+        fields = ['phone','address',]
