@@ -23,11 +23,19 @@
     height: 100%;
 }
 
+.cart-wrapper table thead {
+    background-color: #f2f2f2;
+    font-weight: bold;
+    color: #333;
+    border-radius: 10px;
+    overflow: hidden;
+}
 table {
      background-color: #ffffffbd;
     width: 100%;
     border-collapse: collapse;
-    border-radius: 6px;
+    border-radius: 10px;
+    overflow: hidden;
 }
 
 th, td {
@@ -45,11 +53,13 @@ tr:not(:first-child) {
     border-bottom: 1px solid rgba(128, 128, 128, 0.4);
 }
 
-.cart-wrapper hr {
-    position: relative;
-    top: 40px;
-    width: 90%;
-   
+.cart-wrapper {
+    display: flex;
+        width: 70%;
+    margin: auto;
+}
+.cart-wrapper>table {
+    flex-basis: 50%;
 }
 
 
@@ -62,6 +72,7 @@ tr:not(:first-child) {
 /*Shipping table*/
 
     .finish-order-table {
+
         width: 95%;
         margin: auto;
         border-collapse: collapse;
@@ -82,7 +93,7 @@ tr:not(:first-child) {
     .finish-order-table th,
     .finish-order-table td {
         padding: 12px;
-        border: 1px solid #ccc;
+        border-bottom: 1px solid #ccc;
 
     }
 
@@ -96,3 +107,48 @@ tr:not(:first-child) {
     }
 
 
+/*  CART SECTION FORM*/
+
+.shipping-form {
+    padding: 10px;
+    flex-basis: 50%;
+  max-width: 400px;
+    max-height: 350px;
+  margin: 0 auto;
+    background-color: #ffffffbd;
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 6px;
+}
+
+.shipping-form label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+
+}
+
+
+
+.shipping-form input[type="text"] {
+
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  font-size: 16px;
+}
+
+.shipping-form input[type="submit"] {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 12px;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+.shipping-form input[type="submit"]:hover {
+  background-color: #0056b3;
+}

@@ -51,10 +51,6 @@ class CartViewUser(views.ListView):
         return context
 
 
-
-
-
-
 class DeleteItemFromCart(views.View):
 
     def get(self, request, pk):
@@ -68,7 +64,6 @@ class DeleteItemFromCart(views.View):
         return redirect('cart view')
 
 
-
 class BuyNow(views.View):
 
     def get_cart_items(self):
@@ -79,7 +74,6 @@ class BuyNow(views.View):
     def post(self, request, *args, **kwargs):
         form = PhoneOrderForm(request.POST)
         cart_items = self.get_cart_items()
-
 
         if form.is_valid():
             phone = form.cleaned_data['phone']
@@ -95,15 +89,14 @@ class BuyNow(views.View):
                         book=cart_item.book,
                         quantity=cart_item.quantity,
                         created=created_time,
-                        price = cart_item.book.price,
+                        price=cart_item.book.price,
                         phone=phone,
                         address=address,
                     )
                     cart_item.delete()
                 Order.objects.filter(profile=self.request.user.profile).update(status='Pending')
 
-            return redirect('process shippment')
-
+            return redirect('index')
 
         context = {
             'form': form,
@@ -112,8 +105,7 @@ class BuyNow(views.View):
         return render(request, "cart-check-out.html", context)
 
 
-
-class ShipmentProcess(LoginRequiredMixin,UserPassesTestMixin,views.ListView):
+class ShipmentProcess(LoginRequiredMixin, UserPassesTestMixin, views.ListView):
     template_name = 'shipment-process.html'
     model = Order
 
@@ -137,11 +129,6 @@ class ShipmentProcess(LoginRequiredMixin,UserPassesTestMixin,views.ListView):
         for profile in profiles:
             profile.orders = Order.objects.filter(profile=profile)
 
-
-
-
-
-
         context = {
             'profiles': profiles,
 
@@ -150,29 +137,21 @@ class ShipmentProcess(LoginRequiredMixin,UserPassesTestMixin,views.ListView):
         return render(request, self.template_name, context)
 
 
-
-
-
-
-
 def Finish(request, pk):
     profile = Profile.objects.get(pk=pk)
     if request.method == 'POST':
-        form = OrderCreateForm(request.POST,)
+        form = OrderCreateForm(request.POST, )
         if form.is_valid():
             new_status = form.cleaned_data['status']
             Order.objects.filter(profile=profile).update(status=new_status)
             return redirect('process shippment')
 
     else:
-        # Create an empty form for GET request
         form = OrderCreateForm(instance=Order.objects.filter(profile=profile).first())
 
     context = {
         'profile': profile,
         'form': form,
 
-
     }
     return render(request, 'finish-order.html', context)
-

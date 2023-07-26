@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block main_content %}
+
     <h1 class="cart-title">My Shopping Cart</h1>
     <section class="cart-wrapper">
         <table>
@@ -11,7 +12,7 @@
                 <th>Remove</th>
                 <th>Price</th>
             </tr>
-            <hr>
+
             </thead>
             <tbody>
             {% for book in books %}
@@ -36,7 +37,6 @@
             </tr>
             </tfoot>
         </table>
-    </section>
     <div class="shipping-form">
         <form method="post" action="{% url 'buy now' %}">
             {% csrf_token %}
@@ -49,6 +49,8 @@
 
         </form>
     </div>
+    </section>
+
 
 
 
