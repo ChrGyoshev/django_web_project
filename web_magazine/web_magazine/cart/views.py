@@ -17,10 +17,14 @@ from web_magazine.cart.forms import OrderCreateForm, PhoneOrderForm
 from web_magazine.cart.models import Cart, Order
 
 
-class CartViewAdd(views.TemplateView):
+class CartViewAdd(LoginRequiredMixin,views.TemplateView):
     model = Book
     template_name = 'cart.html'
     context_object_name = 'books'
+
+    def handle_no_permission(self):
+        messages.error(self.request, "You do not have permission to access this page.")
+        return redirect(reverse_lazy('index'))
 
     def get(self, request, *args, **kwargs):
         user = self.request.user.profile
