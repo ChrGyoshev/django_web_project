@@ -87,10 +87,10 @@
 }
 
 .submit:hover {
-  background:#00ffff7d;
-  box-shadow: 0 0 13px 4px #00ffff7d;
-  border: 1px solid #00ffff7d;
-  color: white;
+  background: rgb(255, 255, 255);
+  box-shadow: 0 0 1px 1px rgb(255, 255, 255);
+  border: 1px solid rgb(255, 255, 255);
+  color: black;
   cursor: pointer;
 }
 

@@ -1,32 +1,6 @@
 {% extends 'base.html' %}
 {% block main_content %}
     <h1 class="cart-title">My Shopping Cart</h1>
-
-    {% if messages %}
-        <ul class="messages">
-            {% for message in messages %}
-                <li>{{ message }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}
-
-
-        {% if form.phone.errors %}
-        <div class="errors">
-         <i class="fa-regular fa-circle-xmark" onclick="hideErrors()"></i>
-        <ul class="errorlist nonfield">
-            <li>
-                {% for error in form.phone.errors %}
-               {{ error }}
-            </li>
-        </ul>
-
-            {% endfor %}
-        </div>
-    {% endif %}
-
-
-
     <section class="cart-wrapper">
         <table>
             <thead>
@@ -39,22 +13,18 @@
             </tr>
             <hr>
             </thead>
-
             <tbody>
             {% for book in books %}
                 <tr>
                     <td class="product-picture"><img src="{{ book.book.cover.url }}" alt="Product 1"></td>
                     <td>{{ book.book.author }}</td>
                     <td>{{ book.quantity }}</td>
-                    <td><a href="{% url 'delete item from cart' book.pk %}"><i class="fa-solid fa-square-xmark"></i></a></td>
+                    <td><a href="{% url 'delete item from cart' book.pk %}"><i class="fa-solid fa-square-xmark"></i></a>
+                    </td>
                     <td>{{ book.total_price|floatformat:2 }} лв.</td>
-
                 </tr>
-
             {% endfor %}
-
             </tbody>
-
             <tfoot>
             <tr>
                 <th></th>
@@ -63,23 +33,26 @@
                 <th></th>
                 <th>Total: {{ total_amount|floatformat:2 }} лв.</th>
 
-
             </tr>
             </tfoot>
         </table>
     </section>
+    <div class="shipping-form">
+        <form method="post" action="{% url 'buy now' %}">
+            {% csrf_token %}
 
-       <form method="post" action="{% url 'buy now' %}">
+            <label for="id_phone">Phone Number:</label>
+            {{ form.phone }}
+            <label for="id_address">Shipping Address:</label>
+            {{ form.address }}
+            <input type="submit" value="Buy Now">
+
+        </form>
+    </div>
 
 
-        {% csrf_token %}
-        <!-- Add fields for address and phone here -->
 
-        {{ form.phone }}
-           {{ form.address }}
-       <input type="submit" value="Buy Now">
 
-    </form>
 
 
 

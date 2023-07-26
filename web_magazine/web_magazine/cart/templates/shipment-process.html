@@ -4,31 +4,43 @@
 
 
 
+<table class="finish-order-table">
+    <tr class="finish-order-table-title">
+        <th>User</th>
+        <th>Phone Number</th>
+        <th>Address</th>
+        <th>Order Status</th>
+        <th>Order Created</th>
+        <th>Book Title</th>
+        <th>Quantity</th>
+        <th>Total Price</th>
+        <th>Edit</th>
+    </tr>
 
-  <ul>
-
-       {% for profile in profiles %}
-            {% if profile.orders %}
-        <h2>User: {{ profile.user.email }}</h2>
-           <h2>{{ profile.orders.last.phone }}</h2>
-                <h2>{{ profile.orders.last.address }}</h2>
-           <ul>
-            <li>{{ profile.orders.last.status }} ---- {{ profile.orders.last.created }}</li>
-           </ul>
-        <ul>
-            {% for order in profile.orders %}
-                <li>{{ order.book.title }} -> {{ order.quantity }}</li>
-
-            {% endfor %}
-        <h1>{{ profile.total_price }}</h1>
-
-            <a href="{% url 'finish order' pk=profile.pk %}">Edit</a>
-        </ul>
-           {% endif %}
+    {% for profile in profiles %}
+        {% if profile.orders %}
+            <tr>
+                <td>{{ profile.user.email }}</td>
+                <td>{{ profile.orders.last.phone }}</td>
+                <td>{{ profile.orders.last.address }}</td>
+                <td>{{ profile.orders.last.status }}</td>
+                <td>{{ profile.orders.last.created }}</td>
+                <td >
+                    {% for order in profile.orders %}
+                        {{ order.book.title }} <br>
+                    {% endfor %}
+                </td>
+                <td>
+                    {% for order in profile.orders %}
+                        {{ order.quantity }}<br>
+                    {% endfor %}
+                </td>
+                <td>{{ profile.total_price }} лв.</td>
+                <td><a href="{% url 'finish order' pk=profile.pk %}">Edit</a></td>
+            </tr>
+        {% endif %}
     {% endfor %}
 
-
-    </ul>
+</table>
 
 {% endblock %}
-

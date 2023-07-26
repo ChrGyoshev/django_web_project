@@ -59,3 +59,40 @@ tr:not(:first-child) {
     font-size: 22px;
 }
 
+/*Shipping table*/
+
+    .finish-order-table {
+        width: 95%;
+        margin: auto;
+        border-collapse: collapse;
+        font-family: "Poppins", sans-serif;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .finish-order-table-title {
+        background-color: #f2f2f2;
+        font-weight: bold;
+        color: #333;
+    }
+
+    .finish-order-table tr {
+        border-bottom: 2px solid #80808040;
+    }
+    .finish-order-table th,
+    .finish-order-table td {
+        padding: 12px;
+        border: 1px solid #ccc;
+
+    }
+
+    .finish-order-table-books {
+        font-style: italic;
+    }
+
+    .finish-order-table a {
+        color: #007bff;
+        text-decoration: none;
+    }
+
+
