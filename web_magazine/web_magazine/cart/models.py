@@ -50,5 +50,5 @@ class Order(models.Model):
 
 
     address = models.TextField(
-        max_length=250,
+        max_length=50,
     )

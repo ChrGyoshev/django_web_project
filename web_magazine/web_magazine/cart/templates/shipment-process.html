@@ -38,6 +38,7 @@
                 <td>{{ profile.total_price }} лв.</td>
                 <td><a href="{% url 'finish order' pk=profile.pk %}">Edit</a></td>
             </tr>
+
         {% endif %}
     {% endfor %}
 
