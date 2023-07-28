@@ -6,6 +6,10 @@
     box-sizing: border-box;
 }
 
+.profile-card h4 {
+    overflow: auto;
+}
+
 .profile-card {
     position: relative;
     margin: 0 auto;
@@ -60,7 +64,7 @@
     font-size: 22px;
 }
 
-.fa-solid.fa-user-xmark{
+.fa-solid.fa-user-xmark {
     position: absolute;
     top: 15px;
     right: 55px;
@@ -71,15 +75,19 @@
 }
 
 .edit-submit-btn {
-    border: none;
+    /*border: none;*/
     width: 60%;
     margin: 0 auto;
     border-radius: 10px;
     padding: 12px;
-    font-size: 16px;
     font-weight: bold;
     text-align: center;
-    background-color: #ffffff;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    margin-bottom: 10px;
 }
 
 .edit-submit-btn:hover {
@@ -104,7 +112,7 @@
 /*DELETE PROFILE*/
 
 .delete-wrapper {
-        width: 25vw;
+    width: 25vw;
     background-color: white;
     text-align: center;
     margin: auto;
@@ -118,7 +126,7 @@
     width: 90%;
     margin: 15px auto;
     text-align: left;
-    padding:8px;
+    padding: 8px;
     border-left: 2px solid #F47142;
     border-radius: 2px;
 }
@@ -126,18 +134,19 @@
 .delete-card h3 {
     color: #7E1709;
 }
+
 .delete-card i {
     padding-right: 5px;
 }
 
 .delete-card p {
-    color:#F47142;
+    color: #F47142;
 }
 
 .profile-delete, .profile-cancel {
-    padding:8px 36px;
+    padding: 8px 36px;
     border: none;
-   border-radius: 15px;
+    border-radius: 15px;
     font-size: 14px;
 }
 
@@ -148,7 +157,7 @@
     margin-right: 10px;
 }
 
-.profile-delete:hover{
+.profile-delete:hover {
     cursor: pointer;
     border: 2px solid black;
 }
@@ -159,6 +168,6 @@
     border: 2px solid #627D98;
 }
 
-.profile-cancel:hover{
+.profile-cancel:hover {
     border: 2px solid black;
 }

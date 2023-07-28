@@ -1,5 +1,6 @@
 from django.urls import path
-from web_magazine.cart.views import CartViewAdd, CartViewUser, DeleteItemFromCart, BuyNow, ShipmentProcess, Finish
+from web_magazine.cart.views import CartViewAdd, CartViewUser, DeleteItemFromCart, BuyNow, ShipmentProcess, Finish, \
+    SuccessOrder
 
 urlpatterns = [
     path('<int:pk>/', CartViewAdd.as_view(), name='cart add'),
@@ -10,4 +11,5 @@ urlpatterns = [
 
     path('process/', ShipmentProcess.as_view(), name='process shippment'),
     path('finish-order/<int:pk>', Finish,name='finish order'),
+    path('success-order/', SuccessOrder.as_view(),name='success order'),
 ]

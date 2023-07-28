@@ -3,7 +3,7 @@
 body {
     height: 100vh;
     width: 100%;
-    background: url('../pxfuel.jpg');
+    background: url('../background-picture.jpg');
     background-position: center;
     background-size: cover;
     font-family: 'Helvetica Neue', Arial, Helvetica, 'Nimbus Sans L', sans-serif;
@@ -64,3 +64,5 @@ input:-webkit-autofill:focus,
 input:-webkit-autofill:active{
     -webkit-text-fill-color: #8f8b8b !important;
 }
+
+

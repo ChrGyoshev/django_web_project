@@ -19,7 +19,7 @@
 }
 
 .product-picture img {
-    width: 100%;
+    min-width: 100%;
     height: 100%;
 }
 
@@ -32,7 +32,8 @@
 }
 table {
      background-color: #ffffffbd;
-    width: 100%;
+    box-shadow: 8px 12px 8px 4px black;
+    width: 400px;
     border-collapse: collapse;
     border-radius: 10px;
     overflow: hidden;
@@ -55,8 +56,11 @@ tr:not(:first-child) {
 
 .cart-wrapper {
     display: flex;
-        width: 70%;
+    width: 70%;
     margin: auto;
+    gap: 5%;
+    justify-content: center;
+    padding-bottom: 20px;
 }
 .cart-wrapper>table {
     flex-basis: 50%;
@@ -110,17 +114,22 @@ tr:not(:first-child) {
 /*  CART SECTION FORM*/
 
 .shipping-form {
+
     padding: 10px;
     flex-basis: 50%;
   max-width: 400px;
     max-height: 350px;
   margin: 0 auto;
     background-color: #ffffffbd;
+    box-shadow: 8px 12px 8px 4px black;
     width: 100%;
     border-collapse: collapse;
     border-radius: 6px;
 }
 
+.shipping-form form {
+    padding-left: 20px;
+}
 .shipping-form label {
   display: block;
   margin-bottom: 10px;
@@ -131,12 +140,26 @@ tr:not(:first-child) {
 
 
 .shipping-form input[type="text"] {
-
+  outline: none;
   padding: 10px;
-  border: 1px solid #ccc;
+  border: none;
   border-radius: 5px;
   margin-bottom: 15px;
   font-size: 16px;
+
+}
+
+#id_address {
+    outline: none;
+    border: none;
+    padding-left: 5px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    overflow: hidden;
+    height: 100px;
+    resize: none;
+    border-radius: 5px;
+
 }
 
 .shipping-form input[type="submit"] {
@@ -147,8 +170,125 @@ tr:not(:first-child) {
   cursor: pointer;
   font-size: 16px;
   border-radius: 5px;
+    margin-bottom: 10px;
 }
 
 .shipping-form input[type="submit"]:hover {
   background-color: #0056b3;
+}
+
+
+  /*success order placed*/
+  :root {
+            --brand-success: #5cb85c;
+            --loader-size: 7em;
+            --check-height: calc(var(--loader-size) / 2);
+            --check-width: calc(var(--check-height) / 2);
+            --check-left: calc(var(--loader-size) / 6 + var(--loader-size) / 12);
+            --check-thickness: 3px;
+            --check-color: var(--brand-success);
+        }
+
+
+
+        h1 {
+            margin-bottom: 1em;
+        }
+
+        .circle-loader {
+              display: block;
+            margin: 0 auto;
+            margin-bottom: var(--loader-size) / 2;
+            border: 3px solid rgba(0, 0, 0, 0.2);
+            border-left-color: var(--check-color);
+            animation: loader-spin 1.2s infinite linear;
+            position: relative;
+
+            vertical-align: top;
+            border-radius: 50%;
+            width: var(--loader-size);
+            height: var(--loader-size);
+        }
+
+        .load-complete {
+            display: block;
+            margin: 0 auto;
+            -webkit-animation: none;
+            animation: none;
+            border-color: var(--check-color);
+            transition: border 500ms ease-out;
+        }
+
+
+
+
+       .checkmark {
+    display: none;
+}
+
+.checkmark.draw:after {
+    animation-duration: 800ms;
+    animation-timing-function: ease;
+    animation-name: checkmark;
+    transform: scaleX(-1) rotate(135deg);
+}
+
+.checkmark:after {
+    opacity: 1;
+    height: var(--check-height);
+    width: var(--check-width);
+    transform-origin: left top;
+    border-right: var(--check-thickness) solid var(--check-color);
+    border-top: var(--check-thickness) solid var(--check-color);
+    content: '';
+    left: var(--check-left);
+    top: var(--check-height);
+    position: absolute;
+}
+
+        @keyframes loader-spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes checkmark {
+            0% {
+                height: 0;
+                width: 0;
+                opacity: 1;
+            }
+            20% {
+                height: 0;
+                width: var(--check-width);
+                opacity: 1;
+            }
+            40% {
+                height: var(--check-height);
+                width: var(--check-width);
+                opacity: 1;
+            }
+            100% {
+                height: var(--check-height);
+                width: var(--check-width);
+                opacity: 1;
+            }
+        }
+
+        #order-success-done {
+            background:#ffffffbd;
+            padding: 50px 5px 50px 5px;
+            width: 90%;
+            margin: 0 auto;
+            border-radius: 10px;
+        }
+
+        #order-success-done h1 {
+            text-align: center;
+            margin-bottom: 40px;
+            font-family: sans-serif;
+            font-size: 2rem;
 }

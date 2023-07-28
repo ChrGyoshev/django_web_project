@@ -24,6 +24,7 @@ class Cart(models.Model):
 
 class Order(models.Model):
     CHOICES = (
+        ('---','---'),
         ('In Progress','In Progress'),
         ('Pending','Pending'),
         ('Finished','Finished'),
@@ -50,5 +51,5 @@ class Order(models.Model):
 
 
     address = models.TextField(
-        max_length=50,
+        max_length=58,
     )

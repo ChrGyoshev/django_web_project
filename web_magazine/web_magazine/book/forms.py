@@ -18,6 +18,12 @@ class BookForm(forms.ModelForm):
         label='Author Last Name'
     )
 
+    cover = forms.ImageField(
+        error_messages={
+            'required': 'Please upload an image for the book cover.'
+        }
+    )
+
     class Meta:
         model = Book
         fields = ['title', 'description', 'price', 'cover', 'author', 'author_first_name', 'author_last_name']

@@ -7,8 +7,9 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>BookBuzz</title>
-     <link rel="stylesheet" href="{% static 'star-ratings/css/star-ratings.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+     <link rel="stylesheet" href="{% static 'star-ratings/css/star-ratings.css' %}">
+
     <link rel="shortcut icon" href="{% static 'George-Ui-Ancient-Legend-Green-Books-Library.256.png' %}">
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -31,7 +32,12 @@
                         <a href="{% url 'profile details'  user.pk %}" class="profile-btns">Details<i class="fa-regular fa-user"></i></a>
                         <a href="{% url 'sign out' %}" class="profile-btns">LogOut<i class="fa fa-sign-out" aria-hidden="true"></i></a></li>
 
-                     <li class="lia cart" onclick="location.href='{% url "cart view" %}'"><a class="li"><i class="fa-solid fa-cart-shopping"></i></a></li>
+                     <li class="lia cart" onclick="location.href='{% url "cart view" %}'"><a class="li">
+                         {% if profile_books %}
+                             {{ profile_books }} <i class="fa-solid fa-cart-shopping"></i></a></li>
+                             {% else %}
+                         <i class="fa-solid fa-cart-shopping"></i></a></li>
+                             {% endif %}
                 {% else %}
                     <li class="lia profile"><a class="li">Sign</a>
                     <a href="{% url 'sign up' %}" class="profile-btns">Sign Up<i class="fa-regular fa-user"></i></a>

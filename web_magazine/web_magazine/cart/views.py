@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.core.exceptions import PermissionDenied
+
 from django.db import transaction, models
 from django.db.models import Sum, F
 
@@ -100,7 +100,7 @@ class BuyNow(views.View):
                     cart_item.delete()
                 Order.objects.filter(profile=self.request.user.profile).update(status='Pending')
 
-            return redirect('index')
+            return redirect('success order')
 
         context = {
             'form': form,
@@ -113,6 +113,7 @@ class ShipmentProcess(LoginRequiredMixin, UserPassesTestMixin, views.ListView):
     template_name = 'shipment-process.html'
     model = Order
 
+
     def test_func(self):
         return self.request.user.groups.filter(name='EditBook').exists() or self.request.user.is_superuser
 
@@ -121,6 +122,7 @@ class ShipmentProcess(LoginRequiredMixin, UserPassesTestMixin, views.ListView):
         return redirect(reverse_lazy('cart view'))
 
     def get(self, request, *args, **kwargs):
+
 
         profiles = Profile.objects.all()
 
@@ -133,29 +135,50 @@ class ShipmentProcess(LoginRequiredMixin, UserPassesTestMixin, views.ListView):
         for profile in profiles:
             profile.orders = Order.objects.filter(profile=profile)
 
+        form = OrderCreateForm()
         context = {
             'profiles': profiles,
+            'form':form,
 
         }
 
         return render(request, self.template_name, context)
 
 
+
+
+
+
+
+
 def Finish(request, pk):
     profile = Profile.objects.get(pk=pk)
+    book = Order.objects.filter(profile=profile)
+
+
+
     if request.method == 'POST':
-        form = OrderCreateForm(request.POST, )
+
+        form = OrderCreateForm(request.POST,instance=book.last())
         if form.is_valid():
             new_status = form.cleaned_data['status']
-            Order.objects.filter(profile=profile).update(status=new_status)
-            return redirect('process shippment')
+            if new_status == 'Finished':
+                book.delete()
+            else:
+                book.update(status=form.cleaned_data['status'])
+                form.save()
 
+            return redirect('process shippment')
     else:
-        form = OrderCreateForm(instance=Order.objects.filter(profile=profile).first())
+        form = OrderCreateForm()
 
     context = {
-        'profile': profile,
         'form': form,
-
     }
-    return render(request, 'finish-order.html', context)
+    return render(request, 'shipment-process.html', context)
+
+
+
+
+class SuccessOrder(views.TemplateView):
+    template_name = 'order-succsess.html'

@@ -4,8 +4,14 @@
         {% if form.errors %}
             <i class="fa-regular fa-circle-xmark" onclick="hideErrors()"></i>
             {{ form.non_field_errors }}
-
+            {{ form.cover.errors }}
         {% endif %}
+
+    {% if errors %}
+    {% for error in errors %}
+    {{ error  }}
+    {% endfor %}
+    {% endif %}
     </div>
 
     <div class="profile-card profile-details book-card">
@@ -43,7 +49,7 @@
                      <label class="edit-submit-btn">
 
                     <input type="file" name="cover" accept="image/*" id="id_cover">
-                    <input type="file" id="geeks" name="myfile">
+                    <input type="file" id="cover" name="cover">
                     <i class="fa fa-cloud-upload"></i> Upload
 
                 </label>

@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block main_content %}
+    <section id="order-success-done">
+        <h1>Your order was successfully placed!</h1>
+        <div class="circle-loader">
+            <div class="checkmark draw"></div>
+        </div>
+    </section>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{% static "js/order-success.js" %}"></script>
+{% endblock %}
+

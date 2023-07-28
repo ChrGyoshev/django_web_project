@@ -1,8 +1,0 @@
-{% extends 'base.html' %}
-{% block main_content %}
-<h1>{{ request.user.profile }}</h1>
-    {% for order in orders %}
-        <p>{{ order.book }}</p>
-        <p>{{ order.profile.first_name }}</p>
-    {% endfor %}
-{% endblock %}
