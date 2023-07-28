@@ -1,5 +1,12 @@
 {% extends 'base.html' %}
 {% block main_content %}
+     {% if form.errors.phone %}
+                <div class="errors">
+                 <i class="fa-regular fa-circle-xmark" onclick="hideErrors()"></i>
+                {{ form.errors.phone }}
+                </div>
+
+                {% endif %}
     {% if not books %}
     <h1 class="cart-title">Your Shopping Cart is Empty</h1>
     {% else %}
@@ -45,6 +52,7 @@
 
             <label for="id_phone">Phone Number:</label>
             {{ form.phone }}
+
             <label  for="id_address">Shipping Address:</label>
             {{ form.address }}
             <input type="submit" value="Buy Now">
