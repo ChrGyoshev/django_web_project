@@ -1,3 +1,12 @@
+.login-box form input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active{
+    -webkit-text-fill-color: #fdfcfc !important;
+}
+
+
+
 .login-box {
   width: 400px;
   padding: 40px;

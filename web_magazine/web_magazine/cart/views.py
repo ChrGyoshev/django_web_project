@@ -19,7 +19,7 @@ from web_magazine.cart.models import Cart, Order
 
 class CartViewAdd(LoginRequiredMixin,views.TemplateView):
     model = Book
-    template_name = 'cart.html'
+
     context_object_name = 'books'
 
     def handle_no_permission(self):
@@ -71,7 +71,6 @@ class DeleteItemFromCart(views.View):
 class BuyNow(views.View):
 
     def get_cart_items(self):
-        # Fetch items from the cart
         profile = self.request.user.profile
         return Cart.objects.filter(profile=profile)
 
@@ -119,7 +118,7 @@ class ShipmentProcess(LoginRequiredMixin, UserPassesTestMixin, views.ListView):
 
     def handle_no_permission(self):
         messages.error(self.request, "You do not have permission to access this page.")
-        return redirect(reverse_lazy('cart view'))
+        return redirect(reverse_lazy('test'))
 
     def get(self, request, *args, **kwargs):
 
@@ -182,3 +181,7 @@ def Finish(request, pk):
 
 class SuccessOrder(views.TemplateView):
     template_name = 'order-succsess.html'
+
+
+class Test(views.TemplateView):
+    template_name =  '404.html'

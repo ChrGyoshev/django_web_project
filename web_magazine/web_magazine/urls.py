@@ -9,6 +9,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',Index.as_view(),name='index'),
 
+
     path('account/', include('web_magazine.accounts.urls')),
     path('book/', include('web_magazine.book.urls')),
     path('cart/',include('web_magazine.cart.urls')),

@@ -39,11 +39,11 @@
                 </td>
                 <td>{{ profile.total_price }} лв.</td>
 
-{#                <td><a href="{% url 'finish order' pk=profile.pk %}">Edit</a></td>#}
+{#
             <td><form method="post" action="{% url 'finish order' pk=profile.pk %}">
                     {{ form.status }}
                 {% csrf_token %}
-                 <button type="submit">Submit</button>
+                 <button class="ship-button" type="submit">Submit</button>
 
 
                 </form></td>

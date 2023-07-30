@@ -58,11 +58,6 @@ footer {
     cursor: default;
 }
 
-body * input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus,
-input:-webkit-autofill:active{
-    -webkit-text-fill-color: #8f8b8b !important;
-}
+
 
 

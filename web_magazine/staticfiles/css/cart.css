@@ -1,4 +1,9 @@
-
+.shipping-form form input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active{
+    -webkit-text-fill-color: #000000 !important;
+}
 .cart-title {
     font-size: 2.5rem;
     color: white;
@@ -110,6 +115,20 @@ tr:not(:first-child) {
         text-decoration: none;
     }
 
+    .ship-button {
+        background: #007bff;
+        border: none;
+        padding: 8px 12px;
+        color: white;
+        border-radius: 5px;
+        margin-left: 10px;
+        cursor: pointer;
+    }
+
+    .ship-button:hover {
+        background: black;
+        color: white;
+    }
 
 /*  CART SECTION FORM*/
 
