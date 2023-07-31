@@ -1,8 +1,10 @@
 from django.contrib.auth.mixins import UserPassesTestMixin
+from django.core.paginator import Paginator
+from django.db.models import Q
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.views import generic as view
-from web_magazine.book.forms import BookForm
+from web_magazine.book.forms import BookForm, SearchForm
 from web_magazine.book.models import Book, Author
 
 
@@ -10,6 +12,34 @@ class BookCatalogue(view.ListView):
     template_name = 'catalogue.html'
     model = Book
     paginate_by = 6
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+
+        search = SearchForm(self.request.GET)
+        if search.is_valid():
+            search_query = search.cleaned_data.get('search', ' ')
+
+            if search_query:
+                queryset = queryset.filter(
+                    Q(title__icontains=search_query) | Q(author__first_name__icontains=search_query) | Q(author__last_name__icontains=search_query))
+
+
+        return queryset
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args,**kwargs)
+
+        context['search'] = self.request.GET.get('search', '')
+        context['form'] = SearchForm()
+        return context
+
+
+
+
+
+
+
 
 
 class AddBook(UserPassesTestMixin, view.CreateView):

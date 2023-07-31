@@ -4,6 +4,13 @@
 {% block main_content %}
 
 
+    <form method="GET" action="{% url 'book catalogue' %}?page={{ page_obj.number }}">
+
+{{ form }}
+
+    <button type="submit">Search</button>
+    </form>
+
 
     <div class="gallery">
         {% for book in object_list %}
@@ -27,9 +34,9 @@
     {% if is_paginated %}
         <div class="page-count-wrapper">
 
-        <a href="?page=1" class="btn-paginator btn-first"><i class="fa-solid fa-backward"></i></a>
+        <a href="?page=1&search={{ search }}" class="btn-paginator btn-first"><i class="fa-solid fa-backward"></i></a>
         {% if page_obj.has_previous %}
-            <a href="?page={{ page_obj.previous_page_number }}"
+            <a href="?page={{ page_obj.previous_page_number }}&search={{ search }}"
                class="btn-paginator btn-previous"><i class="fa-solid fa-circle-arrow-left"></i></a>
         {% endif %}
 
@@ -37,7 +44,7 @@
             {% if num == page_obj.number %}
                 <span class="btn-paginator current-page">{{ num }}</span>
             {% else %}
-                <a href="?page={{ num }}" class="btn-paginator btn-secondary">
+                <a href="?page={{ num }}&search={{ search }}" class="btn-paginator btn-secondary">
                     {{ num }}
                 </a>
             {% endif %}
@@ -46,12 +53,12 @@
 
 
         {% if page_obj.has_next %}
-            <a href="?page={{ page_obj.next_page_number }}"
+            <a href="?page={{ page_obj.next_page_number }}&search={{ search }}"
                class="btn-paginator btn-secondary mx-2">
                 <i class="fa-solid fa-circle-arrow-right"></i>
             </a>
         {% endif %}
-        <a href="?page={{ page_obj.paginator.num_pages }}"
+        <a href="?page={{ page_obj.paginator.num_pages }}&search={{ search }}"
            class="btn-paginator btn-secondary mx-2">
             <i class="fa-solid fa-forward"></i>
         </a>
