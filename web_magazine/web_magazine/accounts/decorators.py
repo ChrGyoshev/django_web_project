@@ -10,7 +10,7 @@ def authentication_required(view_func):
 
             return view_func(request, *args, **kwargs)
         else:
-            return redirect('index')
+            return redirect('error page')
     return wrapper
 
 

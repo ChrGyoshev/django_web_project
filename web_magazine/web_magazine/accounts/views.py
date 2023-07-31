@@ -20,8 +20,7 @@ class AddClassToFormFieldMixin:
 
 
 
-class Index(view.TemplateView):
-    template_name = 'index.html'
+
 
 
 class SignUp(view.CreateView):

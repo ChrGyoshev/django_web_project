@@ -3,13 +3,12 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
-from web_magazine.accounts.views import Index
+
 
 urlpatterns = [
+
     path('admin/', admin.site.urls),
-    path('',Index.as_view(),name='index'),
-
-
+    path('',include('web_magazine.common.urls')),
     path('account/', include('web_magazine.accounts.urls')),
     path('book/', include('web_magazine.book.urls')),
     path('cart/',include('web_magazine.cart.urls')),

@@ -1,7 +1,7 @@
 from django.urls import path
 
 
-from web_magazine.accounts.views import Index, SignUp, SignIn, SignOut, EditProfile, ProfileDetails, DeleteProfile
+from web_magazine.accounts.views import  SignUp, SignIn, SignOut, EditProfile, ProfileDetails, DeleteProfile
 
 urlpatterns = [
 

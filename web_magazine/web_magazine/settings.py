@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'web_magazine.accounts',
     'web_magazine.book',
     'web_magazine.cart',
+    'web_magazine.common',
 
     'django.contrib.sites',
     'allauth',

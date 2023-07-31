@@ -118,7 +118,7 @@ class ShipmentProcess(LoginRequiredMixin, UserPassesTestMixin, views.ListView):
 
     def handle_no_permission(self):
         messages.error(self.request, "You do not have permission to access this page.")
-        return redirect(reverse_lazy('test'))
+        return redirect(reverse_lazy('error page'))
 
     def get(self, request, *args, **kwargs):
 
@@ -183,5 +183,3 @@ class SuccessOrder(views.TemplateView):
     template_name = 'order-succsess.html'
 
 
-class Test(views.TemplateView):
-    template_name =  '404.html'
