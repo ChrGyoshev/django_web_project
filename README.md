@@ -1,2 +1,2 @@
-My Project for DjangoWeb at SoftUni
+My Project for DjangoWeb at SoftUni!
 
