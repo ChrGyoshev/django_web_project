@@ -1,3 +1,4 @@
+{% load custom_tags %}
 {% load static %}
 <!doctype html>
 <html lang="en">
@@ -23,14 +24,18 @@
             <ul class="ul">
                 <li class="lia" onclick="location.href='{% url "index" %}'"><a class="li">Home</a></li>
                 <li class="lia" onclick="location.href='{% url "book catalogue" %}'"><a class="li">Catalogue</a></li>
-
-                <li class="lia" onclick="location.href='{% url "sign in" %}'"><a class="li">About</a></li>
                 {% if user.is_authenticated %}
-
                     <li class="lia profile"><a class="li">Profile</a>
-                        <a href="{% url 'sign in' %}" class="profile-btns">login</a>
+
                         <a href="{% url 'profile details'  user.pk %}" class="profile-btns">Details<i class="fa-regular fa-user"></i></a>
                         <a href="{% url 'sign out' %}" class="profile-btns">LogOut<i class="fa fa-sign-out" aria-hidden="true"></i></a></li>
+
+                    {% if user|is_moderator or request.user.is_superuser %}
+                    <li class="lia profile"><a class="li">Admin</a>
+                        <a href="{% url 'add book' %}" class="profile-btns">Add Book<i class="fa-solid fa-book"></i></a>
+                        <a href="{% url 'process shippment' %}" class="profile-btns">Orders<i class="fa-solid fa-truck-fast"></i></a>
+
+                    {% endif %}
 
                      <li class="lia cart" onclick="location.href='{% url "cart view" %}'"><a class="li">
                          {% if profile_books %}
@@ -38,11 +43,17 @@
                              {% else %}
                          <i class="fa-solid fa-cart-shopping"></i></a></li>
                              {% endif %}
+
                 {% else %}
+
                     <li class="lia profile"><a class="li">Sign</a>
                     <a href="{% url 'sign up' %}" class="profile-btns">Sign Up<i class="fa-regular fa-user"></i></a>
                     <a href="{% url 'sign in' %}" class="profile-btns">Sign In<i class="fa-regular fa-user"></i></a>
                 {% endif %}
+
+            <li class="lia" onclick="location.href='{% url "about page" %}'"><a class="li">About</a></li>
+
+
             </ul>
             <div class="Menu2">
                 <svg version="1.1" id="menulogo" xmlns="http://www.w3.org/2000/svg"

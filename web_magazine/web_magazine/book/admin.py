@@ -11,5 +11,14 @@ class BookAuthor(admin.ModelAdmin):
 
 @admin.register(Book)
 class BookAdmin(admin.ModelAdmin):
-    pass
+    list_display = [
+        'title', 'price','author',
+    ]
+    search_fields = [
+        'price','title', 'author__first_name', 'author__last_name',
+    ]
+
+    ordering = ['-price']
+
+    list_filter = ['title','price',]
 

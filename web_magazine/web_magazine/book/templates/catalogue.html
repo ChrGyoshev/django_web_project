@@ -5,28 +5,32 @@
 
 
     <form method="GET" action="{% url 'book catalogue' %}?page={{ page_obj.number }}">
+    <section class="search-bar">
+        <div class="search">
+            {{ form.search }}
+        <button id="search-btn" type="submit">Search</button>
+        </div>
 
-{{ form }}
+    </section>
 
-    <button type="submit">Search</button>
     </form>
 
 
     <div class="gallery">
         {% for book in object_list %}
             <a class="gallery-redirect-to-details" href="#">
-            <div class="content">
-                <img src="{{ book.cover.url }}" alt="">
-                <h3>{{ book.title }}</h3>
-                <p>{{ book.description|truncatechars:20 }}</p>
-                {% ratings book %}
-                <h6>${{ book.price|floatformat:2 }}</h6>
-                <p>{{ book.author }}</p>
+                <div class="content">
+                    <img src="{{ book.cover.url }}" alt="">
+                    <h3>{{ book.title }}</h3>
+                    <p>{{ book.description|truncatechars:20 }}</p>
+                    {% ratings book %}
+                    <h6>${{ book.price|floatformat:2 }}</h6>
+                    <p>{{ book.author }}</p>
 
-                <a href="{% url 'cart add' book.pk   %}">
-                    <button>Add to Cart</button>
-                </a>
-            </div>
+                    <a href="{% url 'cart add' book.pk %}">
+                        <button>Add to Cart</button>
+                    </a>
+                </div>
             </a>
         {% endfor %}
 

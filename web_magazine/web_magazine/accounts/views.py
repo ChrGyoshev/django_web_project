@@ -1,13 +1,14 @@
 from django.contrib.auth import login, authenticate, get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView, LogoutView
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views import generic as view
 from web_magazine.accounts.decorators import authentication_required
 from web_magazine.accounts.forms import CreateUserForm, LoginForm, ChangeForm
 from web_magazine.accounts.models import AppUser, Profile
+from web_magazine.custom_mixins import LoginRequiredToAccsses
 
 
 class AddClassToFormFieldMixin:
@@ -46,11 +47,7 @@ class SignUp(view.CreateView):
         return form
 
 
-class SignIn(LoginView):
-    @method_decorator(authentication_required)
-    def dispatch(self, request, *args, **kwargs):
-        return super().dispatch(request, *args, **kwargs)
-
+class SignIn(LoginRequiredToAccsses,LoginView):
     template_name = 'login.html'
     next_page = 'index'
     authentication_form = LoginForm

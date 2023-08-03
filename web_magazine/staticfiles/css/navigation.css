@@ -76,10 +76,22 @@
     line-height: 100px;
 }
 .allMenu ul li:hover {
-    background: rgba(246, 231, 231, 0.47);
+    background: rgba(246, 231, 231, 0.74);
     transform: scale(1.2, 1.2);
     box-shadow: 5px 1px 10px rgba(0, 0, 0, 0.3);
 }
+
+ .allMenu ul .profile:hover {
+     background: rgba(246, 231, 231, 0.92);
+    transform: scale(1.2, 1.2);
+    box-shadow: 5px 1px 10px rgba(0, 0, 0, 0.3);
+}
+
+ .allMenu ul .profile .profile-btns:hover{
+     background-color: rgba(16, 15, 15, 0.89);
+ }
+
+
 .allMenu ul li a {
     font-family: 'Helvetica Neue', Arial, Helvetica, 'Nimbus Sans L', sans-serif;
     text-transform: uppercase;
@@ -91,6 +103,10 @@
     cursor: pointer;
 
 }
+
+
+
+
 .lia.profile.active {
     height: 240px;
     border-bottom-left-radius: 2%;
@@ -122,5 +138,12 @@
 }
 nav {
     height:100px;
-    margin-bottom: 155px;
+    margin-bottom: 100px;
+}
+
+.fa-solid.fa-truck-fast {
+    padding-left:15px;
+}
+.fa-solid.fa-book {
+    padding-left:15px;
 }

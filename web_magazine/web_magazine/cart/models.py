@@ -24,7 +24,7 @@ class Cart(models.Model):
 
 class Order(models.Model):
     CHOICES = (
-        ('---','---'),
+        ('-----','-----'),
         ('In Progress','In Progress'),
         ('Pending','Pending'),
         ('Finished','Finished'),
@@ -53,3 +53,8 @@ class Order(models.Model):
     address = models.TextField(
         max_length=58,
     )
+
+    def __str__(self):
+        return f"{self.profile.user.email} - Order {self.id}"
+
+

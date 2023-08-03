@@ -1,19 +1,15 @@
-from django import forms
+
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-
 from django.db import transaction, models
 from django.db.models import Sum, F
-
 from django.shortcuts import redirect, get_object_or_404, render
 from django.urls import reverse_lazy
 from django.utils import timezone
 from django.views import generic as views
-
 from web_magazine.accounts.models import Profile
 from web_magazine.book.models import Book
 from web_magazine.cart.forms import OrderCreateForm, PhoneOrderForm
-
 from web_magazine.cart.models import Cart, Order
 
 
@@ -82,7 +78,7 @@ class BuyNow(views.View):
             phone = form.cleaned_data['phone']
             address = form.cleaned_data['address']
 
-            self.request.user.profile.save()
+            # self.request.user.profile.save()
 
             with transaction.atomic():
                 for cart_item in cart_items:
@@ -97,7 +93,7 @@ class BuyNow(views.View):
                         address=address,
                     )
                     cart_item.delete()
-                Order.objects.filter(profile=self.request.user.profile).update(status='Pending')
+                # Order.objects.filter(profile=self.request.user.profile).update(status='Pending')
 
             return redirect('success order')
 
@@ -108,13 +104,13 @@ class BuyNow(views.View):
         return render(request, "cart-check-out.html", context)
 
 
-class ShipmentProcess(LoginRequiredMixin, UserPassesTestMixin, views.ListView):
+class   ShipmentProcess(LoginRequiredMixin, UserPassesTestMixin, views.ListView):
     template_name = 'shipment-process.html'
     model = Order
 
 
     def test_func(self):
-        return self.request.user.groups.filter(name='EditBook').exists() or self.request.user.is_superuser
+        return self.request.user.groups.filter(name='Moderator').exists() or self.request.user.is_superuser
 
     def handle_no_permission(self):
         messages.error(self.request, "You do not have permission to access this page.")
@@ -164,12 +160,13 @@ def Finish(request, pk):
             if new_status == 'Finished':
                 book.delete()
             else:
+                book.status = new_status
                 book.update(status=form.cleaned_data['status'])
-                form.save()
+
 
             return redirect('process shippment')
-    else:
-        form = OrderCreateForm()
+
+
 
     context = {
         'form': form,

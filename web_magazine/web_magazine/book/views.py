@@ -49,7 +49,7 @@ class AddBook(UserPassesTestMixin, view.CreateView):
     success_url = reverse_lazy('index')
 
     def test_func(self):
-        return self.request.user.groups.filter(name='EditBook').exists() or self.request.user.is_superuser
+        return self.request.user.groups.filter(name='Moderator').exists() or self.request.user.is_superuser
 
     def form_valid(self, form):
         author = form.cleaned_data['author']

@@ -7,3 +7,6 @@ class Index(views.TemplateView):
 
 class ErrorPage(views.TemplateView):
     template_name =  '404.html'
+
+class AboutPage(views.TemplateView):
+    template_name = 'about.html'

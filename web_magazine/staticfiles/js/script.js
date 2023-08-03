@@ -7,16 +7,21 @@ function test() {
     let rect2 = document.querySelector('.rect2');
     let rect3 = document.querySelector('.rect3');
     let ul = document.querySelector('.ul');
-    let profile_li = document.querySelector('.lia.profile')
+    let profile_li = document.querySelectorAll('.lia.profile')
+
+    profile_li.forEach(profile_li => {
+        profile_li.addEventListener('click', profileBtn);
+    });
 
 
-    profile_li.addEventListener('click', profileBtn)
+
+    // profile_li.addEventListener('click', profileBtn)
 
     menu_logo.addEventListener('click', tester);
 
      function profileBtn() {
         let button = this
-        let p = document.querySelectorAll('.profile-btns')
+        let p = button.querySelectorAll('.profile-btns')
         if (!button.classList.contains('active')) {
             button.classList.add('active')
             p.forEach(element => {

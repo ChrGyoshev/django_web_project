@@ -1,8 +1,9 @@
 from django.urls import path
 
-from web_magazine.common.views import Index, ErrorPage
+from web_magazine.common.views import Index, ErrorPage, AboutPage
 
 urlpatterns = [
     path('',Index.as_view(),name='index'),
-    path('test', ErrorPage.as_view(), name='error page'),
+    path('error/', ErrorPage.as_view(), name='error page'),
+    path('about/',AboutPage.as_view(), name='about page'),
 ]

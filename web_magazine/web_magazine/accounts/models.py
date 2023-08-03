@@ -57,6 +57,11 @@ class AppUser(AbstractBaseUser,PermissionsMixin):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
 
+
+    class Meta:
+        verbose_name = 'Users'
+        verbose_name_plural = 'Users'
+
     objects = UserManager()
 
 
