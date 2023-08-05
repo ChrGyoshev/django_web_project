@@ -1,12 +1,13 @@
 import re
-
 from django.core.exceptions import ValidationError
-from django.core.validators import RegexValidator
 from django.db import models
+from django.db.models.signals import pre_save
+from django.dispatch import receiver
 from django.utils import timezone
-
 from web_magazine.accounts.models import Profile
 from web_magazine.book.models import Book
+
+
 
 
 # Create your models here.
@@ -56,5 +57,6 @@ class Order(models.Model):
 
     def __str__(self):
         return f"{self.profile.user.email} - Order {self.id}"
+
 
 

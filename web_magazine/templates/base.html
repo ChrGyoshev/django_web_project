@@ -35,6 +35,9 @@
                         <a href="{% url 'add book' %}" class="profile-btns">Add Book<i class="fa-solid fa-book"></i></a>
                         <a href="{% url 'process shippment' %}" class="profile-btns">Orders<i class="fa-solid fa-truck-fast"></i></a>
 
+                        <a href="{% url 'admin:index' %}" class="profile-btns">Admin<i class="fa-solid fa-screwdriver-wrench"></i></a>
+
+
                     {% endif %}
 
                      <li class="lia cart" onclick="location.href='{% url "cart view" %}'"><a class="li">

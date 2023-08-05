@@ -11,16 +11,15 @@ from web_magazine.accounts.models import Profile
 from web_magazine.book.models import Book
 from web_magazine.cart.forms import OrderCreateForm, PhoneOrderForm
 from web_magazine.cart.models import Cart, Order
+from web_magazine.custom_mixins import ModeratorAdminAccsses, LoginRequiredToAccsses
 
 
-class CartViewAdd(LoginRequiredMixin,views.TemplateView):
+class CartViewAdd(LoginRequiredToAccsses,views.TemplateView):
     model = Book
 
     context_object_name = 'books'
 
-    def handle_no_permission(self):
-        messages.error(self.request, "You do not have permission to access this page.")
-        return redirect(reverse_lazy('index'))
+
 
     def get(self, request, *args, **kwargs):
         user = self.request.user.profile
@@ -104,17 +103,12 @@ class BuyNow(views.View):
         return render(request, "cart-check-out.html", context)
 
 
-class   ShipmentProcess(LoginRequiredMixin, UserPassesTestMixin, views.ListView):
+class   ShipmentProcess(ModeratorAdminAccsses, views.ListView):
     template_name = 'shipment-process.html'
     model = Order
 
 
-    def test_func(self):
-        return self.request.user.groups.filter(name='Moderator').exists() or self.request.user.is_superuser
 
-    def handle_no_permission(self):
-        messages.error(self.request, "You do not have permission to access this page.")
-        return redirect(reverse_lazy('error page'))
 
     def get(self, request, *args, **kwargs):
 

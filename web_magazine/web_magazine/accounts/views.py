@@ -1,5 +1,5 @@
 from django.contrib.auth import login, authenticate, get_user_model
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, AccessMixin
 from django.contrib.auth.views import LoginView, LogoutView
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
@@ -47,10 +47,16 @@ class SignUp(view.CreateView):
         return form
 
 
-class SignIn(LoginRequiredToAccsses,LoginView):
+class SignIn(AccessMixin,LoginView):
     template_name = 'login.html'
     next_page = 'index'
     authentication_form = LoginForm
+
+    def dispatch(self,request,*args,**kwargs):
+        if self.request.user.is_authenticated:
+            return redirect(reverse_lazy('error page'))
+        return super().dispatch(request,*args,**kwargs)
+
 
     def get_form(self, form_class=None):
         form = super().get_form(form_class)

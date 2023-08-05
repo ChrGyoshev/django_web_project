@@ -7,7 +7,16 @@ from web_magazine.book.models import Book, Author
 # Register your models here.
 @admin.register(Author)
 class BookAuthor(admin.ModelAdmin):
-    pass
+    list_display = [
+        'first_name',
+        'last_name',
+    ]
+    search_fields = [
+        'first_name', 'last_name'
+    ]
+    ordering = ['first_name']
+
+    list_filter = ['first_name']
 
 @admin.register(Book)
 class BookAdmin(admin.ModelAdmin):

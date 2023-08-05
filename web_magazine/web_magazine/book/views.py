@@ -1,11 +1,9 @@
-from django.contrib.auth.mixins import UserPassesTestMixin
-from django.core.paginator import Paginator
 from django.db.models import Q
-from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.views import generic as view
 from web_magazine.book.forms import BookForm, SearchForm
 from web_magazine.book.models import Book, Author
+from web_magazine.custom_mixins import ModeratorAdminAccsses
 
 
 class BookCatalogue(view.ListView):
@@ -36,20 +34,13 @@ class BookCatalogue(view.ListView):
 
 
 
-
-
-
-
-
-
-class AddBook(UserPassesTestMixin, view.CreateView):
+class AddBook(ModeratorAdminAccsses, view.CreateView):
     template_name = 'add-book.html'
     model = Book
     form_class = BookForm
     success_url = reverse_lazy('index')
 
-    def test_func(self):
-        return self.request.user.groups.filter(name='Moderator').exists() or self.request.user.is_superuser
+
 
     def form_valid(self, form):
         author = form.cleaned_data['author']

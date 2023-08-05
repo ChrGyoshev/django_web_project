@@ -73,9 +73,38 @@ footer {
 }
 
 .about-wrapper h3 {
-    color: black;
 
+    color: #627D98;
 }
+
+.about-wrapper h2 {
+    color: #627D98;
+}
+
+
+.image-about {
+    margin: 20px auto;
+
+    osition: relative;
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    background-color: #4070f4;
+    padding: 3px;
+    margin-bottom: 10px;
+}
+.image-about img {
+        height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.about-wrapper p {
+    font-style: italic;
+}
+
+
 
 
 

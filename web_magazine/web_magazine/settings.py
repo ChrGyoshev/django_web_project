@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'captcha',
     'django_cleanup.apps.CleanupConfig',
     'star_ratings',
+    
 ]
 SITE_ID = 5
 SOCIALACCOUNT_LOGIN_ON_GET=True
