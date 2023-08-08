@@ -1,9 +1,17 @@
+from django.core.exceptions import ValidationError
 from django.db import models
 
 
 
 
 # Create your models here.
+
+def validate_max_size(cover):
+    MAX_UPLOAD_SIZE = 5 * 1024 * 1024
+
+    if cover.size > MAX_UPLOAD_SIZE:
+        raise ValidationError("The book size must not exceed 5MB")
+
 
 
 class Author(models.Model):
@@ -34,12 +42,18 @@ class Book(models.Model):
     price = models.FloatField()
 
     cover = models.ImageField(
-        upload_to='book_cover'
+        upload_to='book_cover',
+        validators=[validate_max_size,],
+
+
     )
 
     author = models.ForeignKey(Author, on_delete=models.CASCADE,)
 
+
+
     def __str__(self):
         return f"{self.title}"
+
 
 

@@ -1,6 +1,8 @@
 from django import forms
 from .models import Book, Author
 
+
+
 class BookForm(forms.ModelForm):
     author = forms.ModelChoiceField(
         queryset=Author.objects.all(),
@@ -26,7 +28,6 @@ class BookForm(forms.ModelForm):
             'required': 'Please upload an image for the book cover.'
         }
     )
-
 
 
     class Meta:

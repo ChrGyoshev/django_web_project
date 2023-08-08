@@ -2,22 +2,32 @@
 {% block main_content %}
 
 
+
+    </div>
      <div class="errors">
         {% if form.errors %}
             <i class="fa-regular fa-circle-xmark" onclick="hideErrors()"></i>
             {{ form.non_field_errors }}
+            {{ form.cover.errors }}
+            {{ form.profile_picture.errors }}
             {{ form.phone.errors }}
         {% endif %}
+
+
     </div>
 
 
     <div class="profile-card profile-details">
         <div class="image">
              {% if user.profile.profile_picture %}
+                 {% if form.profile_picture.errors %}
+                      <img src="https://img.myloview.com/posters/default-avatar-profile-icon-vector-social-media-user-400-202768327.jpg" alt="">
+                     {% else %}
             <img src="{{ user.profile.profile_picture.url }}" alt="">
-            {% else %}
-            <img src="https://img.myloview.com/posters/default-avatar-profile-icon-vector-social-media-user-400-202768327.jpg" alt="">
             {% endif %}
+        {% else%}
+         <img src="https://img.myloview.com/posters/default-avatar-profile-icon-vector-social-media-user-400-202768327.jpg" alt="">
+        {% endif %}
 
 
         </div>
@@ -41,7 +51,7 @@
                 <label class="edit-submit-btn">
 
                     <input type="file" name="profile_picture" accept="image/*" id="id_profile_picture">
-                    <input type="file" id="geeks" name="myfile">
+                    <input type="file" id="profile_picture" name="profile_picture">
                     <i class="fa fa-cloud-upload"></i> Upload
                 </label>
                 <div class="img-file-text">

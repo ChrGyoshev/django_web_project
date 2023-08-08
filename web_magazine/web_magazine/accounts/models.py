@@ -7,6 +7,13 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 import re
 
+from web_magazine.book.models import validate_max_size
+
+def validate_max_size_profile_picture(cover):
+    MAX_UPLOAD_SIZE = 1 * 1024 * 1024
+
+    if cover.size > MAX_UPLOAD_SIZE:
+        raise ValidationError("The book size must not exceed 5MB")
 
 def phone_regex_validator(value):
     if not re.match(r'^\+\d{1,15}$', value):
@@ -90,6 +97,7 @@ class Profile(models.Model):
         upload_to='profile-picture',
         blank=True,
         null=True,
+        validators=[validate_max_size_profile_picture,],
     )
 
     gender = models.CharField(
