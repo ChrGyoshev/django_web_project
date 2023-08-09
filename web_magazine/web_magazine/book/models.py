@@ -32,11 +32,11 @@ class Author(models.Model):
 
 class Book(models.Model):
     title = models.CharField(
-        max_length=30,
+        max_length=60,
     )
 
     description = models.TextField(
-        max_length=150,
+        max_length=650,
     )
 
     price = models.FloatField()

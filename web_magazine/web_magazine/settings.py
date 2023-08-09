@@ -54,7 +54,7 @@ INSTALLED_APPS = [
     'star_ratings',
     
 ]
-SITE_ID = 5
+SITE_ID = 6
 SOCIALACCOUNT_LOGIN_ON_GET=True
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
@@ -111,9 +111,13 @@ WSGI_APPLICATION = 'web_magazine.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "book_db",
+        "USER": "postgres-user",
+        "PASSWORD": "pass",
+        "HOST": "127.0.0.1",
+        "PORT": "5432",
     }
 }
 
