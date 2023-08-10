@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block main_content %}
+
+    <section class="book-details-wrapper">
+        <article class="book-details">
+            <div class="book-details-image">
+                <img src="{{ book.cover.url }}" alt="">
+            </div>
+            <article class="book-details-text">
+                <h1 class="book-details-title">
+                    {{ book.title }}
+                </h1>
+                <h2 class="book-details-author">
+                    {{ book.author }}
+                </h2>
+                <p class="book-details-description">
+                    {{ book.description }}
+                </p>
+                <article class="book-details-price">
+                    <h1 class="book-details-price-tag">Price:{{ book.price|floatformat:2 }}лв.</h1>
+                     <article class="book-details-button-wrapper">
+                    <div class="book-details-cart-add">
+                        <a href="{% url 'cart add' book.pk %}">
+                            <button>Add to Cart</button>
+                        </a>
+                    </div>
+                    <div class="book-details-cart-back">
+                        <button id="goBackButton">Go back</button>
+                        </a>
+                    </div>
+                </article>
+                </article>
+
+            </article>
+        </article>
+    </section>
+
+    <script>
+        document.getElementById("goBackButton").addEventListener("click", function () {
+            window.history.back();
+        });
+    </script>
+{% endblock %}

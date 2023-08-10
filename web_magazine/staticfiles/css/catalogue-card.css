@@ -92,8 +92,12 @@ h6 {
     margin-top: 5px;
     border-bottom-right-radius: 20px;
     border-bottom-left-radius: 20px;
-    background: rgba(2, 11, 49, 0.87);
+    background: #0656b2;
 
+}
+.content button:hover {
+    background: black;
+    color: white;
 }
 
 /*Paginator*/
@@ -192,6 +196,88 @@ h6 {
 
 #search-btn:hover {
     cursor: pointer;
+    background-color: #0462c7;
+
+
 
 }
 
+/* BOOK DETAILS*/
+.book-details-wrapper {
+    width: 95%;
+    background: rgba(255, 255, 255, 0.63);
+    border: none;
+    border-radius: 14px;
+    margin: auto;
+}
+
+.book-details {
+    display: flex;
+
+    align-items: flex-start;
+}
+
+.book-details-author {
+    font-style: italic;
+}
+
+.book-details-description {
+    font-size:24px;
+    line-height: 1.5;
+    padding: 10px;
+}
+
+.book-details-price-tag {
+    display: inline-block;
+    width: 300px;
+    background-color: rgb(255 255 255 / 20%);
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 10px;
+
+}
+
+
+
+.book-details-image {
+    width: 450px;
+    height: 650px;
+    padding: 40px;
+}
+
+.book-details-image img {
+
+    height: 100%;
+    border-radius: 10px;
+    box-shadow: -1px -1px 20px 4px black;
+
+}
+
+.book-details-text h1 {
+    font-size: 2rem;
+}
+
+/*BOOK DETAILS BUTTONS*/
+
+.book-details-cart-add button, .book-details-cart-back button {
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 12px 24px;
+    width: 150px;
+    box-shadow: 0px 0px 6px #000000a6;
+
+
+}
+
+.book-details-cart-add button:hover, .book-details-cart-back button:hover {
+    cursor: pointer;
+    background: black;
+
+}
+
+.book-details-button-wrapper {
+    display: flex;
+    gap: 20px;
+}

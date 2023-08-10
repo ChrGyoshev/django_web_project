@@ -1,6 +1,4 @@
 function test() {
-
-
     let menu_logo = document.querySelector('#menulogo');
     let Menu = document.querySelector('.Menu');
     let rect1 = document.querySelector('.rect1');
@@ -8,7 +6,6 @@ function test() {
     let rect3 = document.querySelector('.rect3');
     let ul = document.querySelector('.ul');
     let profile_li = document.querySelectorAll('.lia.profile')
-
     profile_li.forEach(profile_li => {
         profile_li.addEventListener('click', profileBtn);
     });

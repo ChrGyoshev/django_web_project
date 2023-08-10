@@ -18,7 +18,7 @@
 
     <div class="gallery">
         {% for book in object_list %}
-            <a class="gallery-redirect-to-details" href="#">
+            <a class="gallery-redirect-to-details" href="{% url 'book details' pk=book.pk %}">
                 <div class="content">
                     <img src="{{ book.cover.url }}" alt="">
                     <h3>{{ book.title }}</h3>

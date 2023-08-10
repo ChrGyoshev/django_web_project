@@ -1,13 +1,8 @@
 function hideErrors() {
     let element = document.querySelector('.errors')
      let computedStyle = window.getComputedStyle(element);
-
-
      if (computedStyle.display === "block") {
-    element.style.display = "none";
-
-
-
+        element.style.display = "none";
 }
 }
 

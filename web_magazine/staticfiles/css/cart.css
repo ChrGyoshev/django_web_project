@@ -116,6 +116,7 @@ tr:not(:first-child) {
     }
 
     .ship-button {
+        margin-top: 10px;
         background: #007bff;
         border: none;
         padding: 8px 12px;
@@ -123,6 +124,7 @@ tr:not(:first-child) {
         border-radius: 5px;
         margin-left: 10px;
         cursor: pointer;
+
     }
 
     .ship-button:hover {

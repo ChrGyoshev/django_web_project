@@ -1,6 +1,7 @@
 from django.db.models import Q
 from django.urls import reverse_lazy
 from django.views import generic as view
+
 from web_magazine.book.forms import BookForm, SearchForm
 from web_magazine.book.models import Book, Author
 from web_magazine.custom_mixins import ModeratorAdminAccsses
@@ -20,18 +21,17 @@ class BookCatalogue(view.ListView):
 
             if search_query:
                 queryset = queryset.filter(
-                    Q(title__icontains=search_query) | Q(author__first_name__icontains=search_query) | Q(author__last_name__icontains=search_query))
-
+                    Q(title__icontains=search_query) | Q(author__first_name__icontains=search_query) | Q(
+                        author__last_name__icontains=search_query))
 
         return queryset
 
     def get_context_data(self, *args, **kwargs):
-        context = super().get_context_data(*args,**kwargs)
+        context = super().get_context_data(*args, **kwargs)
 
         context['search'] = self.request.GET.get('search', '')
         context['form'] = SearchForm()
         return context
-
 
 
 class AddBook(ModeratorAdminAccsses, view.CreateView):
@@ -39,8 +39,6 @@ class AddBook(ModeratorAdminAccsses, view.CreateView):
     model = Book
     form_class = BookForm
     success_url = reverse_lazy('index')
-
-
 
     def form_valid(self, form):
         author = form.cleaned_data['author']
@@ -72,4 +70,6 @@ class AddBook(ModeratorAdminAccsses, view.CreateView):
         return super().form_valid(form)
 
 
-
+class BookDetails(view.DetailView):
+    template_name = 'book-details.html'
+    model = Book
