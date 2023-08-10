@@ -12,6 +12,6 @@ The project is live and deployed on an AWS EC2 instance. You can access it [here
 
 ## Contact
 
-If you have any questions or feedback about the project, feel free to reach out to me at [your@email.com](mailto:your@email.com).
+If you have any questions or feedback about the project, feel free to reach out to me at [christiyangyoshev@gmail.com](mailto:christiyangyoshev@gmail.com).
 
 Thank you for checking out my project!
