@@ -1,16 +1,15 @@
 from django.contrib.auth.base_user import BaseUserManager, AbstractBaseUser
 from django.contrib.auth.models import AbstractUser, PermissionsMixin
 from django.core.exceptions import ValidationError
-from django.core.validators import RegexValidator
 from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 import re
 
-from web_magazine.book.models import validate_max_size
+
 
 def validate_max_size_profile_picture(cover):
-    MAX_UPLOAD_SIZE = 1 * 1024 * 1024
+    MAX_UPLOAD_SIZE = 5 * 1024 * 1024
 
     if cover.size > MAX_UPLOAD_SIZE:
         raise ValidationError("The book size must not exceed 5MB")
@@ -18,10 +17,12 @@ def validate_max_size_profile_picture(cover):
 def phone_regex_validator(value):
     if not re.match(r'^\+\d{1,15}$', value):
         raise ValidationError("Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.")
-# Create your models here.
+
+
+
+
 class UserManager(BaseUserManager):
     use_in_migrations = True
-
     def _create_user(self, email, password, **extra_fields):
         if not email:
             raise ValueError('Users require an email field')
@@ -49,13 +50,11 @@ class UserManager(BaseUserManager):
 
 
 class AppUser(AbstractBaseUser,PermissionsMixin):
-
     email = models.EmailField(
         unique=True,
         blank=False,
         null=False,
     )
-
 
     is_staff = models.BooleanField(
         default=False,
@@ -78,8 +77,6 @@ class Profile(models.Model):
         ("Female",'Female'),
         ("Do not show", 'Do not show')
     )
-
-
 
     first_name = models.CharField(
         max_length=30,
@@ -115,16 +112,14 @@ class Profile(models.Model):
     )
 
     def __str__(self):
-        return f"{self.first_name} {self.last_name}"
+        if self.first_name and self.last_name:
+            return f"{self.first_name} {self.last_name}"
+        else:
+            return f"{self.user.email}"
 
 
     user = models.OneToOneField(AppUser,on_delete=models.CASCADE,
                                 primary_key=True,)
-
-
-
-
-
 
 
 

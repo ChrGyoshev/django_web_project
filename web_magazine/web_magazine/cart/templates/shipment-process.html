@@ -37,7 +37,7 @@
                         {{ order.quantity }}<br>
                     {% endfor %}
                 </td>
-                <td>{{ profile.total_price }} лв.</td>
+                <td>{{ profile.total_price|floatformat:2 }} лв.</td>
 
 {#
             <td><form method="post" action="{% url 'finish order' pk=profile.pk %}">

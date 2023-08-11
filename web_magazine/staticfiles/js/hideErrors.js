@@ -20,8 +20,6 @@ function passHide() {
 }
 
 
-function file() {
-    console.log('hi')
-}
+
 
 

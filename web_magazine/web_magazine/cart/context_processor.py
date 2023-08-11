@@ -12,7 +12,6 @@ def CartItemsPerProfile(request):
         profile_books = Cart.objects.filter(profile=profile)
 
         for cart_item in profile_books:
-            book = cart_item.book
             quantity = cart_item.quantity
             books_cart_count += quantity
     else:

@@ -4,7 +4,6 @@ from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm, UsernameField, AuthenticationForm
 import ssl
-
 from web_magazine.accounts.models import AppUser, Profile
 
 ssl._create_default_https_context = ssl._create_unverified_context

@@ -1,10 +1,6 @@
-
-from django.contrib import messages
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.db import transaction, models
 from django.db.models import Sum, F
 from django.shortcuts import redirect, get_object_or_404, render
-from django.urls import reverse_lazy
 from django.utils import timezone
 from django.views import generic as views
 from web_magazine.accounts.models import Profile
@@ -14,12 +10,9 @@ from web_magazine.cart.models import Cart, Order
 from web_magazine.custom_mixins import ModeratorAdminAccsses, LoginRequiredToAccsses
 
 
-class CartViewAdd(LoginRequiredToAccsses,views.TemplateView):
+class CartViewAdd(LoginRequiredToAccsses, views.TemplateView):
     model = Book
-
     context_object_name = 'books'
-
-
 
     def get(self, request, *args, **kwargs):
         user = self.request.user.profile
@@ -77,8 +70,6 @@ class BuyNow(views.View):
             phone = form.cleaned_data['phone']
             address = form.cleaned_data['address']
 
-            # self.request.user.profile.save()
-
             with transaction.atomic():
                 for cart_item in cart_items:
                     created_time = timezone.now() + timezone.timedelta(hours=3)
@@ -92,7 +83,7 @@ class BuyNow(views.View):
                         address=address,
                     )
                     cart_item.delete()
-                # Order.objects.filter(profile=self.request.user.profile).update(status='Pending')
+
 
             return redirect('success order')
 
@@ -103,16 +94,11 @@ class BuyNow(views.View):
         return render(request, "cart-check-out.html", context)
 
 
-class   ShipmentProcess(ModeratorAdminAccsses, views.ListView):
+class ShipmentProcess(ModeratorAdminAccsses, views.ListView):
     template_name = 'shipment-process.html'
     model = Order
 
-
-
-
     def get(self, request, *args, **kwargs):
-
-
         profiles = Profile.objects.all()
 
         for profile in profiles:
@@ -121,34 +107,23 @@ class   ShipmentProcess(ModeratorAdminAccsses, views.ListView):
                 'total_price']
             profile.total_price = total_price if total_price is not None else 0
 
-        for profile in profiles:
-            profile.orders = Order.objects.filter(profile=profile)
-
         form = OrderCreateForm()
         context = {
             'profiles': profiles,
-            'form':form,
+            'form': form,
 
         }
 
         return render(request, self.template_name, context)
 
 
-
-
-
-
-
-
 def Finish(request, pk):
     profile = Profile.objects.get(pk=pk)
     book = Order.objects.filter(profile=profile)
 
-
-
     if request.method == 'POST':
 
-        form = OrderCreateForm(request.POST,instance=book.last())
+        form = OrderCreateForm(request.POST, instance=book.last())
         if form.is_valid():
             new_status = form.cleaned_data['status']
             if new_status == 'Finished':
@@ -157,10 +132,7 @@ def Finish(request, pk):
                 book.status = new_status
                 book.update(status=form.cleaned_data['status'])
 
-
             return redirect('process shippment')
-
-
 
     context = {
         'form': form,
@@ -168,9 +140,5 @@ def Finish(request, pk):
     return render(request, 'shipment-process.html', context)
 
 
-
-
 class SuccessOrder(views.TemplateView):
     template_name = 'order-succsess.html'
-
-

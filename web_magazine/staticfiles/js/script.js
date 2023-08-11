@@ -1,4 +1,4 @@
-function test() {
+function Load() {
     let menu_logo = document.querySelector('#menulogo');
     let Menu = document.querySelector('.Menu');
     let rect1 = document.querySelector('.rect1');
@@ -10,11 +10,7 @@ function test() {
         profile_li.addEventListener('click', profileBtn);
     });
 
-
-
-    // profile_li.addEventListener('click', profileBtn)
-
-    menu_logo.addEventListener('click', tester);
+    menu_logo.addEventListener('click', MenuBar);
 
      function profileBtn() {
         let button = this
@@ -54,7 +50,7 @@ function test() {
     ul.style.marginTop = '0px';
     menu_logo.style.marginTop = '35px';
 
-    function tester() {
+    function MenuBar() {
         if (Menu.classList.contains('hover')) {
             Menu.classList.remove('hover');
             menu_logo.style.marginTop = '25px';
@@ -74,7 +70,5 @@ function test() {
         }
     }
 }
-    // show file when upload in edit profile
-    // document.getElementById("file-upload").onchange = function() {
-    // document.getElementById("uploadFile").value = this.value;}
-test();
+
+Load();

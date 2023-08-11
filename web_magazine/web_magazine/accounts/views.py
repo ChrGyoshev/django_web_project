@@ -8,19 +8,13 @@ from django.views import generic as view
 from web_magazine.accounts.decorators import authentication_required
 from web_magazine.accounts.forms import CreateUserForm, LoginForm, ChangeForm
 from web_magazine.accounts.models import AppUser, Profile
-from web_magazine.custom_mixins import LoginRequiredToAccsses
+
 
 
 class AddClassToFormFieldMixin:
     def add_class_to_field(self, form, field_name, css_class):
         if field_name in form.fields:
             form.fields[field_name].widget.attrs['class'] = css_class
-
-
-
-
-
-
 
 
 
@@ -88,7 +82,6 @@ class ProfileDetails(LoginRequiredMixin, view.DetailView):
 
 class EditProfile(view.UpdateView):
     template_name = 'edit-profile.html'
-    # success_url = reverse_lazy('index')
     form_class = ChangeForm
     model = Profile
 
@@ -103,16 +96,6 @@ class EditProfile(view.UpdateView):
     def get_success_url(self):
         return reverse_lazy('profile details', kwargs= {'pk':self.request.user.pk})
 
-
-
-
-    # def form_valid(self, form):
-    #     first_name = form.cleaned_data.get('first_name')
-    #     user = self.request.user
-    #     profile = Profile(first_name=first_name,
-    #                       user=user,)
-    #     profile.save()
-    #     return super().form_valid(form)
 
     def get_form(self,*args,**kwargs):
         form = super().get_form(*args,**kwargs)

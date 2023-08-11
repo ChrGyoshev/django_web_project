@@ -21,7 +21,6 @@ class OrderCreateForm(forms.ModelForm):
 
 class PhoneOrderForm(forms.ModelForm):
     phone = forms.CharField(validators=[phone_regex_validator], max_length=17, required=True)
-
     class Meta:
         model = Order
         fields = ['phone','address',]
